@@ -1,0 +1,219 @@
+div.field-type-iframe {
+  margin: 0 auto;
+  color: black;
+  background-color: white;
+}
+
+@media only screen and (max-width: 480px) {
+  div.field-type-iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+
+section.videowrapper {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin-bottom: 50px;
+  background: #000;
+}
+
+.videowrapper iframe,.videowrapper video {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+h1.play-video {
+  text-transform: capitalize;
+  text-align: center;
+  color: #ff5733;
+}
+
+/** Use .sticky */
+
+.ytvideo .is-sticky,.videoTag .is-sticky{
+  position: fixed;
+  right: 3px;
+  bottom: 3px;
+  top: auto;
+  left: auto;
+  max-width: 280px;
+  max-height: 158px;
+  width: 280px;
+  height: 158px;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+  }
+  100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+  }
+  100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+  }
+}
+
+section.main-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+section.level {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  height: 250px;
+  margin-bottom: 50px;
+}
+
+section.level.one {
+  background: #FFC300;
+  margin-top: 25px;
+}
+
+section.level.two {
+  background: #C70039;
+}
+
+section.level.three {
+  background: #FF5733;
+}
+
+section.level.four {
+  background: #C6E2FF;
+}
+
+section.level.five {
+  background: #0085ca;
+}
+
+section.level.six {
+  background: #0085ca;
+}
+
+section.level.seven {
+  background: #C6E2FF;
+}
+
+section.level.eight {
+  background: #FF5733;
+}
+
+section.level.nine {
+  background: #C70039;
+}
+
+section.level.ten {
+  background: #FFC300;
+}
+
+.close-button {
+  position: fixed;
+  box-sizing: border-box;
+  display: block;
+  right: 24px;
+  bottom: 175px;
+  top: auto;
+  left: auto;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  display: none;
+}
+
+.close-button:before,
+.close-button:after {
+  width: 20px;
+  height: 5px;
+  transform: rotate(-45deg);
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background-color: #4F2121;
+  transition: all 0.2s ease-out;
+}
+
+.close-button:after {
+  transform: rotate(45deg);
+}
+
+.close-button:hover:after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover:before {
+  transform: rotate(45deg);
+}
+
+.gradient-overlay {
+  position: fixed;
+  right: 3px;
+  bottom: 3px;
+  top: auto;
+  left: auto;
+  max-width: 280px;
+  max-height: 158px;
+  width: 280px;
+  height: 158px;
+  opacity: .01;
+  background: #000;
+  z-index: 1;
+  display: none;
+}
+
+i.fa.fa-arrows-alt {
+  position: fixed;
+  right: 8px;
+  bottom: 5px;
+  top: auto;
+  left: auto;
+  color: #fff;
+  z-index: 2;
+  cursor: pointer;
+  display: none;
+}
+
+@media only screen and (max-width:1023px) {
+  section.main-wrapper {
+      width: 95%;
+  }
+  section.level {
+      height: 150px;
+      margin-bottom: 50px;
+  }
+}

@@ -1,0 +1,5 @@
+services:
+  aosjs.route_subscriber:
+    class: Drupal\aosjs_animatecss\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

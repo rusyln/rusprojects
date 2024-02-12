@@ -1,0 +1,10 @@
+newsletter_signup:
+  css:
+    theme:
+      css/newsletter_signup_block.css: { }
+  js:
+    js/newsletter_signup_block.js: { }
+
+newsletter_signup_webform:
+  js:
+    js/newsletter_signup_block.webform.js: { }

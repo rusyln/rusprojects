@@ -1,0 +1,9 @@
+aosjs.admin:
+  title: 'List'
+  route_name: aosjs.admin
+  base_route: aosjs.admin
+
+aosjs.settings:
+  title: 'Settings'
+  route_name: aosjs.settings
+  base_route: aosjs.admin

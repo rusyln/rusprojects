@@ -1,0 +1,35 @@
+load: true
+version: 'v2'
+method: local
+url:
+  visibility: '0'
+  pages:
+    - '/admin*'
+    - '/imagebrowser*'
+    - '/img_assist*'
+    - '/imce*'
+    - '/node/add*'
+    - '/node/*/edit'
+    - '/print/*'
+    - '/printpdf/*'
+    - '/system/ajax'
+    - '/system/ajax/*'
+options:
+  library: 'aos'
+  animation: 'fade-up'
+  offset: 120
+  delay: 0
+  duration: 400
+  easing: 'ease'
+  once: false
+  mirror: false
+  anchorPlacement: 'top-bottom'
+advanced:
+  disable: false
+  startEvent: 'DOMContentLoaded'
+  initClassName: 'aos-init'
+  animatedClassName: 'aos-animate'
+  useClassNames: false
+  disableMutationObserver: false
+  debounceDelay: 50
+  throttleDelay: 99

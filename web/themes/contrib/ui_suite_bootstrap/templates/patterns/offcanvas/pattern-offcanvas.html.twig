@@ -1,0 +1,45 @@
+{% set attributes = attributes.addClass('offcanvas-' ~ variant|default('start')|lower|replace({'_': '-'})) %}
+
+{% set offcanvas_id = offcanvas_id|default("offcanvas-" ~ random()) %}
+
+{% set attributes = attributes
+  .addClass('offcanvas')
+  .setAttribute('tabindex', '-1')
+  .setAttribute('id', offcanvas_id)
+  .setAttribute('aria-labelledby', 'label_' ~ offcanvas_id)
+%}
+
+{% set heading_level = heading_level|default(5) %}
+
+{% if responsive %}
+  {% set attributes = attributes.addClass(responsive) %}
+  {% set attributes = attributes.removeClass('offcanvas') %}
+{% endif %}
+
+{% if backdrop %}
+  {% set attributes = attributes.setAttribute('data-bs-backdrop', backdrop) %}
+{% endif %}
+
+{% if scroll %}
+  {% set attributes = attributes.setAttribute('data-bs-scroll', 'true') %}
+{% endif %}
+
+<div{{ attributes }}>
+  {% if title %}
+    <div class="offcanvas-header">
+      <h{{ heading_level }} class="offcanvas-title" id="label_{{ offcanvas_id }}">{{ title }}</h{{ heading_level }}>
+      {{ pattern('close_button', {
+        attributes: create_attribute({
+          'data-bs-dismiss': 'offcanvas',
+          'data-bs-target': '#' ~ offcanvas_id
+        })
+      }) }}
+    </div>
+  {% endif %}
+
+  {% if body %}
+    <div class="offcanvas-body">
+      {{ body }}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Drupal`s integration with AOS.js library.
+ *
+ * AOS - Animate on scroll library.
+ *
+ * Github:  https://github.com/michalsnik/aos
+ * Website: https://michalsnik.github.io/aos/
+ * license: MIT licensed
+ *
+ * Copyright (C) 2015-2023 Michał Sajnóg
+ */

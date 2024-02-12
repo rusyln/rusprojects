@@ -1,0 +1,6 @@
+services:
+  aosjs.animate_manager:
+    class: Drupal\aosjs_ui\AosJsManager
+    arguments: [ '@database' ]
+    tags:
+      - { name: backend_overridable }

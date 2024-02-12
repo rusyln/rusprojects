@@ -1,0 +1,13 @@
+name: Modal
+description: Modal project allows you to add dialogs to your site for lightboxes, user notifications, or completely custom content
+type: module
+core_version_requirement: ^9.3 || ^10
+package: User interface
+configure: modal_page.settings
+dependencies:
+  - 'drupal:system (>= 8.8)'
+
+# Information added by Drupal.org packaging script on 2023-08-25
+version: '5.0.6'
+project: 'modal_page'
+datestamp: 1693002810

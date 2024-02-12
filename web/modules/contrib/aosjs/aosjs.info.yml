@@ -1,0 +1,10 @@
+name: 'AOS JS'
+type: module
+description: 'Integrates AOS.js, is a Small library allows you to animate elements as you scroll down, and up.'
+core_version_requirement: ^8 || ^9 || ^10
+package: User interface
+
+# Information added by Drupal.org packaging script on 2023-11-09
+version: '1.0.0'
+project: 'aosjs'
+datestamp: 1699541627

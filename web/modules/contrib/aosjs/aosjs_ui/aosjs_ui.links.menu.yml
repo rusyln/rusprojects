@@ -1,0 +1,5 @@
+aosjs.admin:
+  title: AOS JS
+  description: 'Configure global settings to use the AOS.js library.'
+  parent: system.admin_config_ui
+  route_name: aosjs.admin

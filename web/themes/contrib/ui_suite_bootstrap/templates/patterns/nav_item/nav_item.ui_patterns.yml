@@ -1,0 +1,25 @@
+nav_item:
+  label: "(Nav item)"
+  description: "Internal: to be used in the 'nav' components (nav, navbar-nav, etc)."
+  links:
+    - 'https://getbootstrap.com/docs/5.3/components/navs-tabs/'
+  category: "Navs and tabs"
+  settings:
+    active:
+      type: "boolean"
+      label: "Active link"
+      description: "Css class for whether the link corresponds to the current url."
+    disabled:
+      type: "boolean"
+      label: "Disabled link"
+      description: "Html attribute to render the link unclickable."
+  fields:
+    link:
+      type: "Link"
+      label: "Link"
+      description: "The link item."
+      preview:
+        type: 'link'
+        title: 'Link'
+        # It should be a URL object, preprocessed for the preview.
+        url: 'https://example.com'

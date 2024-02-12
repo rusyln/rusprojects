@@ -1,0 +1,5 @@
+aosjs.add:
+  route_name: aosjs.add
+  title: 'Add animate'
+  appears_on:
+    - aosjs.admin

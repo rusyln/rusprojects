@@ -1,0 +1,82 @@
+From 031a6d34251674002a1ac7b32f8c73bda99e2108 Mon Sep 17 00:00:00 2001
+From: Ihor Mashevskyi <i.mashevskyi@dev-branch.com>
+Date: Tue, 4 Apr 2023 15:07:14 +0300
+Subject: [PATCH 1/2] Issue #3350919: Fixed .once is not a function error.
+
+---
+ js/simple_popup_blocks.js         | 13 ++++++++-----
+ simple_popup_blocks.libraries.yml |  4 ++--
+ 2 files changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/js/simple_popup_blocks.js b/js/simple_popup_blocks.js
+index 13b1f0d..624b35f 100755
+--- a/js/simple_popup_blocks.js
++++ b/js/simple_popup_blocks.js
+@@ -1,4 +1,4 @@
+-(function ($, Drupal) {
++(function ($, Drupal, once) {
+ 
+   'use strict'
+ 
+@@ -110,10 +110,13 @@
+         modal_minimized_class = block_id + '-modal-minimized'
+         layout_class = '.' + modal_class + ' .spb-popup-main-wrapper'
+         // Wrap arround elements
+-		$(css_identity + block_id).once().
+-          wrap($('<div class="' + modal_class + '"></div>'))
++        once('wrap-arround', css_identity + block_id).forEach(function(elem) {
++          $(elem).wrap($('<div class="' + modal_class + '"></div>'))
++        });
+         // Hide the popup initially
+-        $('.' + modal_class).once().hide()
++        once('hide-popup', '.' + modal_class).forEach(function(elem) {
++          $(elem).hide()
++        })
+ 
+         // Wrap remaining elements
+         if ($(css_identity + block_id).closest('.spb-popup-main-wrapper').length) {
+@@ -357,4 +360,4 @@
+     return null
+   }
+ 
+-})(jQuery, Drupal)
++})(jQuery, Drupal, once)
+diff --git a/simple_popup_blocks.libraries.yml b/simple_popup_blocks.libraries.yml
+index 21ee8f7..51a78a3 100644
+--- a/simple_popup_blocks.libraries.yml
++++ b/simple_popup_blocks.libraries.yml
+@@ -6,5 +6,5 @@ simple_popup_blocks:
+   js:
+     js/simple_popup_blocks.js: {}
+   dependencies:
+-    - core/jquery.once
+-    - core/drupal
+\ No newline at end of file
++    - core/once
++    - core/drupal
+-- 
+GitLab
+
+
+From 9200339848de26f00f3cafe6ee5efc0018f86662 Mon Sep 17 00:00:00 2001
+From: Gunjan Agrawal <gunjanagrawal085@gmail.com>
+Date: Sat, 3 Jun 2023 22:24:23 +0530
+Subject: [PATCH 2/2] Added core jquery library to the libraries.yml
+
+---
+ simple_popup_blocks.libraries.yml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/simple_popup_blocks.libraries.yml b/simple_popup_blocks.libraries.yml
+index 51a78a3..649bf0c 100644
+--- a/simple_popup_blocks.libraries.yml
++++ b/simple_popup_blocks.libraries.yml
+@@ -6,5 +6,6 @@ simple_popup_blocks:
+   js:
+     js/simple_popup_blocks.js: {}
+   dependencies:
++    - core/jquery
+     - core/once
+     - core/drupal
+-- 
+GitLab

@@ -1,0 +1,15 @@
+name: Newsletter Signup Block
+type: module
+description: This module provides a quick and easy newsletter signup block.
+core_version_requirement: ^8.8 || ^9 || ^10
+dependencies:
+  - webform:webform
+  - drupal:media
+  - drupal:image
+  - drupal:responsive_image
+  - drupal:token
+
+# Information added by Drupal.org packaging script on 2023-06-28
+version: '1.0.1'
+project: 'newsletter_signup_block'
+datestamp: 1687954527

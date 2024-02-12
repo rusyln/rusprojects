@@ -1,0 +1,13 @@
+name: 'AOS JS + AnimateCSS'
+type: module
+description: 'Integrates AOS.js with Animate.css library, allows you to use animations from the Animate.css instead of AOS animations.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Animate CSS
+dependencies:
+  - aosjs_ui:aosjs_ui
+  - animatecss:animatecss (>=1.0.3)
+
+# Information added by Drupal.org packaging script on 2023-11-09
+version: '1.0.0'
+project: 'aosjs'
+datestamp: 1699541627

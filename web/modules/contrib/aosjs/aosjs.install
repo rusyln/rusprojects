@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update, uninstall Requirements functions for the AOS JS module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function aosjs_install() {
+  \Drupal::messenger()->addStatus(t('Thanks for installing AOS JS module.'));
+}

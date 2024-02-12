@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the AOS JS + AnimateCSS module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_install().
+ */
+function aosjs_animatecss_install() {
+  // Add AOS JS + AnimateCSS settings link status.
+  \Drupal::messenger()->addStatus(t('Enable the Animate.css library in <a href=":url">AOS settings</a> page as a default animation library for use in animate on scroll.', [
+    ':url' => Url::fromRoute('aosjs.settings')->toString(),
+  ]));
+}

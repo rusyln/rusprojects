@@ -1,0 +1,36 @@
+navbar_nav:
+  label: "(Navbar nav)"
+  description: "Internal: to be used in the 'Navbar' component."
+  links:
+    - 'https://getbootstrap.com/docs/5.3/components/navbar/'
+  category: "Navbar"
+  variants:
+    default:
+      label: "Default"
+    scroll:
+      label: "Scroll"
+  settings:
+    dark:
+      type: "boolean"
+      label: "Dark (deprecated)"
+      description: "Activate dropdown dark menu."
+      preview: false
+      allow_expose: true
+      allow_token: true
+  fields:
+    items:
+      type: "render"
+      label: "Menu items"
+      description: "Full-height and lightweight navigation (including support for dropdowns)."
+      preview:
+        - title: "Home"
+          url: "https://example.com"
+        - title: "Library"
+          url: "https://example.com"
+          below:
+            - title: "Sub 1"
+              url: "https://example.com"
+            - title: "Sub 2"
+              url: "https://example.com"
+        - title: "Data"
+          url: "route:<nolink>"

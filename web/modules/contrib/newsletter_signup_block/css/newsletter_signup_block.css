@@ -1,0 +1,24 @@
+.newsletter-signup {
+  background-color: gray;
+}
+
+.newsletter-signup__form {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1280px;
+  padding: 40px;
+}
+
+.newsletter-signup__intro h4,
+.newsletter-signup__intro p {
+  color: #fff;
+}
+
+.newsletter-signup__text,
+.newsletter-signup__email {
+  padding: 10px;
+}
+
+.newsletter-signup__submit {
+  color: #fff;
+}

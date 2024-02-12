@@ -1,0 +1,12 @@
+simple_popup_blocks:
+  version: VERSION
+  css:
+    theme:
+      css/simple_popup_blocks.css: {}
+  js:
+    js/simple_popup_blocks.js: {}
+    js/yt.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal

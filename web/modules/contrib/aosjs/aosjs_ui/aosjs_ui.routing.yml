@@ -1,0 +1,47 @@
+aosjs.admin:
+  path: '/admin/config/user-interface/aosjs'
+  defaults:
+    _form: '\Drupal\aosjs_ui\AosJsAdmin'
+    _title: 'AOS'
+  requirements:
+    _permission: 'administer aos js'
+
+aosjs.add:
+  path: '/admin/config/user-interface/aosjs/add'
+  defaults:
+    _form: '\Drupal\aosjs_ui\Form\AosJsForm'
+    _title: 'Add Animate'
+  requirements:
+    _permission: 'administer aos js'
+
+aosjs.edit:
+  path: '/admin/config/user-interface/aosjs/edit/{aos_id}'
+  defaults:
+    _form: '\Drupal\aosjs_ui\Form\AosJsForm'
+    _title: 'Edit Animate'
+  requirements:
+    _permission: 'administer aos js'
+
+aosjs.delete:
+  path: '/admin/config/user-interface/aosjs/delete/{aos_id}'
+  defaults:
+    _form: '\Drupal\aosjs_ui\Form\AosJsDelete'
+    _title: 'Delete Animate'
+  requirements:
+    _permission: 'administer aos js'
+
+aosjs.duplicate:
+  path: '/admin/config/user-interface/aosjs/duplicate/{aos_id}'
+  defaults:
+    _form: '\Drupal\aosjs_ui\Form\AosJsDuplicate'
+    _title: 'Duplicate Animate'
+  requirements:
+    _permission: 'administer aos js'
+
+aosjs.settings:
+  path: '/admin/config/user-interface/aosjs/settings'
+  defaults:
+    _form: '\Drupal\aosjs_ui\Form\AosJsSettings'
+    _title: 'Settings'
+  requirements:
+    _permission: 'administer aos js'

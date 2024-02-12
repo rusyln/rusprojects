@@ -1,0 +1,34 @@
+dropdown_item:
+  label: "(Dropdown item)"
+  description: "Internal: to be used in the 'Dropdown' component."
+  links:
+    - 'https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-content'
+  category: "Dropdown"
+  variants:
+    dropdown_item:
+      label: "Dropdown item"
+    dropdown_item_text:
+      label: "Dropdown item text"
+    dropdown_header:
+      label: "Dropdown header"
+    dropdown_divider:
+      label: "Dropdown divider"
+  settings:
+    heading_level:
+      type: "select"
+      label: "Heading level (for 'Dropdown header' variant)"
+      options:
+        2: "h2"
+        3: "h3"
+        4: "h4"
+        5: "h5"
+        6: "h6 (Default)"
+      preview: 6
+      allow_expose: true
+      allow_token: true
+  fields:
+    content:
+      type: "render"
+      label: "Content"
+      description: "The dropdown item content."
+      preview: 'Action'

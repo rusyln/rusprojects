@@ -1,0 +1,20 @@
+# gitignore template for Drupal 8 projects
+#
+# earlier versions of Drupal are tracked in `community/PHP/`
+#
+# follows official upstream conventions:
+# https://www.drupal.org/docs/develop/using-composer
+
+# Ignore vendor dependencies and scripts
+/vendor
+.ddev
+/composer.phar
+/composer
+/robo.phar
+/robo
+/drush.phar
+/drush
+/drupal.phar
+/drupal
+/db.sql
+

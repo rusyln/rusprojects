@@ -1,0 +1,11 @@
+iframe:
+  version: VERSION
+  css:
+    theme:
+      iframe.css: {}
+      css/iframe.css: {}
+  js:
+    iframe.js: {}
+    js/yt.js: {}
+  dependencies:
+    - core/jquery

@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the AOS JS module.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_schema().
+ */
+function aosjs_ui_schema() {
+  $schema['aos'] = [
+    'description' => 'Stores aos js selectors.',
+    'fields' => [
+      'aid' => [
+        'description' => 'Primary Key: unique ID for aos js selectors.',
+        'type'        => 'serial',
+        'unsigned'    => TRUE,
+        'not null'    => TRUE,
+      ],
+      'selector' => [
+        'description' => 'Animate css selector.',
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'default'     => '',
+      ],
+      'label' => [
+        'description' => 'Label of aos js.',
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'default'     => '',
+      ],
+      'comment' => [
+        'description' => 'Comment for aos js.',
+        'type'        => 'text',
+        'size'        => 'big',
+        'not null'    => TRUE,
+      ],
+      'changed' => [
+        'description' => 'Timestamp when the animate was most recently modified.',
+        'type'        => 'int',
+        'unsigned'    => TRUE,
+        'not null'    => TRUE,
+        'default'     => 0,
+        'size'        => 'big',
+      ],
+      'status' => [
+        'description' => 'Boolean indicating whether the animate is enabled.',
+        'type'        => 'int',
+        'not null'    => FALSE,
+        'default'     => 0,
+        'size'        => 'tiny',
+      ],
+      'options' => [
+        'type'        => 'blob',
+        'not null'    => TRUE,
+        'size'        => 'big',
+        'description' => 'The options data in serialized form.',
+      ],
+    ],
+    'indexes' => [
+      'label'    => ['label'],
+      'selector' => ['selector'],
+      'changed'  => ['changed'],
+    ],
+    'primary key' => ['aid'],
+  ];
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function aosjs_ui_install() {
+  // Add AOS JS settings link status.
+  \Drupal::messenger()->addStatus(t('Configure AOS JS <a href=":settings">global settings</a>.', [
+    ':settings' => Url::fromRoute('aosjs.settings')->toString(),
+  ]));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function aosjs_ui_uninstall() {
+  // If uninstall and re-install aosjs_ui module will show error:
+  // Unable to install AOS JS UI, aosjs.settings already
+  // exists in active configuration.
+  $query = \Drupal::database()->delete('config');
+  // Delete set variables in aosjs_ui uninstall, because
+  // of name "aosjs.settings" it will delete in "aosjs"
+  // module uninstall, will not delete in "aosjs_ui" uninstall.
+  $query->condition('name', 'aosjs.settings');
+  $query->execute();
+}

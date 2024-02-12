@@ -1,0 +1,41 @@
+aos-list:
+  version: VERSION
+  css:
+    theme:
+      css/aosjs.admin.css: { }
+
+aos-form:
+  version: VERSION
+  css:
+    theme:
+      css/aosjs.admin.css: { }
+  js:
+    js/aosjs.form.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+aos-settings:
+  version: VERSION
+  css:
+    theme:
+      css/aosjs.admin.css: { }
+  js:
+    js/aosjs.settings.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+aos-init:
+  version: VERSION
+  js:
+    js/aosjs.init.js: { }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once

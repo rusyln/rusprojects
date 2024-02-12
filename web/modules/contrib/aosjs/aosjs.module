@@ -1,0 +1,202 @@
+<?php
+
+/**
+ * @file
+ * Drupal`s integration with AOS.js library.
+ *
+ * AOS - Animate on scroll library.
+ *
+ * Github:  https://github.com/michalsnik/aos
+ * Website: https://michalsnik.github.io/aos/
+ * license: MIT licensed
+ *
+ * Copyright (C) 2015-2023 Michał Sajnóg
+ */
+
+use Drupal\Core\Installer\InstallerKernel;
+
+/**
+ * Check to make sure that AOS.js library is installed.
+ *
+ * @return bool
+ *   Flag indicating if the library is properly installed.
+ */
+function aosjs_check_installed() {
+  // Throw error if AOS.js library file not found.
+  /** @var Drupal\Core\Asset\LibraryDiscovery $library_discovery */
+  $library_discovery = \Drupal::service('library.discovery');
+  $library_exists = FALSE;
+  $definition = $library_discovery->getLibraryByName('aosjs', 'aos-v2.js');
+
+  // Check if $definition is an array before accessing its elements.
+  if (is_array($definition) && isset($definition['js'][0]['data'])) {
+    $library_exists = file_exists(DRUPAL_ROOT . '/' . $definition['js'][0]['data']);
+  }
+
+  return $library_exists;
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function aosjs_page_attachments(array &$attachments) {
+  // Don't add the Library during installation.
+  if (InstallerKernel::installationAttempted()) {
+    return;
+  }
+
+  // Check first AOS JS UI module is not installed and library not exists.
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('aosjs_ui') && !$moduleHandler->moduleExists('animatecss_aos')) {
+    // Check if the AOS.js library is installed, then load
+    // from local otherwise it will be used from CDN.
+    if (aosjs_check_installed()) {
+      $attachments['#attached']['library'][] = 'aosjs/aos-v2.js';
+    }
+    else {
+      $attachments['#attached']['library'][] = 'aosjs/aos-v2.cdn';
+    }
+
+    // Load AOS initial file from library.
+    $attachments['#attached']['library'][] = 'aosjs/aos.init';
+  }
+}
+
+/**
+ * AOS.js animation options.
+ */
+function aosjs_animation_options($grouping = TRUE, $names = []) {
+  $animations = [];
+  $animation_names = aosjs_animation_names();
+  foreach ($animation_names as $name => $animation_group) {
+    if (count($names) && !in_array($name, $names)) {
+      continue;
+    }
+    if ($grouping) {
+      $animations = array_merge($animations, $animation_group);
+    }
+    else {
+      foreach ($animation_group as $animation) {
+        $animations = array_merge($animations, $animation);
+      }
+    }
+  }
+  return $animations;
+}
+
+/**
+ * AOS.js animation name options.
+ */
+function aosjs_animation_names($animation_name = '') {
+  $animation_names = array_reverse(\Drupal::moduleHandler()->invokeAll('aos_animation_names', [$animation_name]));
+
+  // Fade animation names.
+  $animation_names['fade'] = [
+    'Fade animations' => [
+      'fade-in'         => t('Fade in'),
+      'fade-up'         => t('Fade up'),
+      'fade-down'       => t('Fade down'),
+      'fade-left'       => t('Fade left'),
+      'fade-up-left'    => t('Fade up left'),
+      'fade-down-left'  => t('Fade down left'),
+      'fade-right'      => t('Fade right'),
+      'fade-up-right'   => t('Fade up right'),
+      'fade-down-right' => t('Fade down right'),
+    ],
+  ];
+
+  // Flip animation names.
+  $animation_names['flip'] = [
+    'Flip animations' => [
+      'flip-up'    => t('Flip up'),
+      'flip-down'  => t('Flip down'),
+      'flip-left'  => t('Flip left'),
+      'flip-right' => t('Flip right'),
+    ],
+  ];
+
+  // Slide animation names.
+  $animation_names['slide'] = [
+    'Slide animations' => [
+      'slide-up'    => t('Slide up'),
+      'slide-down'  => t('Slide down'),
+      'slide-left'  => t('Slide left'),
+      'slide-right' => t('Slide right'),
+    ],
+  ];
+
+  // Zoom animation names.
+  $animation_names['zoom'] = [
+    'Zoom animations' => [
+      'zoom-in'        => t('Zoom in'),
+      'zoom-in-up'     => t('Zoom in up'),
+      'zoom-in-down'   => t('Zoom in down'),
+      'zoom-in-left'   => t('Zoom in left'),
+      'zoom-in-right'  => t('Zoom in right'),
+      'zoom-out'       => t('Zoom out'),
+      'zoom-out-up'    => t('Zoom out up'),
+      'zoom-out-down'  => t('Zoom out down'),
+      'zoom-out-left'  => t('Zoom out left'),
+      'zoom-out-right' => t('Zoom out right'),
+    ],
+  ];
+
+  return $animation_names;
+}
+
+/**
+ * AOS.js anchor placement options.
+ */
+function aosjs_anchor_placements() {
+  return [
+    'top-top'       => t('Top top'),
+    'top-center'    => t('Top center'),
+    'top-bottom'    => t('Top bottom'),
+    'center-top'    => t('Center top'),
+    'center-center' => t('Center center'),
+    'center-bottom' => t('Center bottom'),
+    'bottom-top'    => t('Bottom top'),
+    'bottom-center' => t('Bottom center'),
+    'bottom-bottom' => t('Bottom bottom'),
+  ];
+}
+
+/**
+ * AOS.js easing function options.
+ */
+function aosjs_easing_functions() {
+  return [
+    'linear'            => t('Linear'),
+    'ease'              => t('Ease'),
+    'ease-in'           => t('Ease-in'),
+    'ease-out'          => t('Ease-out'),
+    'ease-in-out'       => t('Ease-in-out'),
+    'ease-in-back'      => t('Ease-in-back'),
+    'ease-out-back'     => t('Ease-out-back'),
+    'ease-in-out-back'  => t('Ease-in-out-back'),
+    'ease-in-sine'      => t('Ease-in-sine'),
+    'ease-out-sine'     => t('Ease-out-sine'),
+    'ease-in-out-sine'  => t('Ease-in-out-sine'),
+    'ease-in-quad'      => t('Ease-in-quad'),
+    'ease-out-quad'     => t('Ease-out-quad'),
+    'ease-in-out-quad'  => t('Ease-in-out-quad'),
+    'ease-in-cubic'     => t('Ease-in-cubic'),
+    'ease-out-cubic'    => t('Ease-out-cubic'),
+    'ease-in-out-cubic' => t('Ease-in-out-cubic'),
+    'ease-in-quart'     => t('Ease-in-quart'),
+    'ease-out-quart'    => t('Ease-out-quart'),
+    'ease-in-out-quart' => t('Ease-in-out-quart'),
+  ];
+}
+
+/**
+ * AOS.js disable_options.
+ */
+function aosjs_disable_options() {
+  return [
+    'false'  => t('none'),
+    'phone'  => t('Phone'),
+    'tablet' => t('Tablet'),
+    'mobile' => t('Mobile'),
+  ];
+}

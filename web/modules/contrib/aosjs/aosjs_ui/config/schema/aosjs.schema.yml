@@ -1,0 +1,73 @@
+aosjs.settings:
+  type: mapping
+  label: 'AnimateCSS Settings'
+  mapping:
+    load:
+      type: boolean
+      label: 'Let module handle loading AOS.js library'
+    version:
+      type: string
+      label: 'Library Version'
+    method:
+      type: string
+      label: 'Loading AOS.js library method'
+    url:
+      visibility:
+        type: integer
+        label: 'URL Visibility'
+      pages:
+        type: array
+        label: 'Pages'
+    options:
+      library:
+        type: string
+        label: 'Animation Library'
+      animation:
+        type: string
+        label: 'Animation'
+      offset:
+        type: integer
+        label: 'Offset'
+      delay:
+        type: integer
+        label: 'Delay'
+      duration:
+        type: integer
+        label: 'Duration'
+      easing:
+        type: string
+        label: 'Easing'
+      Once:
+        type: boolean
+        label: 'Once'
+      mirror:
+        type: boolean
+        label: 'Mirror'
+      anchorPlacement:
+        type: string
+        label: 'Anchor placement'
+    advanced:
+      disable:
+        type: string
+        label: 'Disable'
+      startEvent:
+        type: string
+        label: 'Start event'
+      initClassName:
+        type: string
+        label: 'Start event'
+      animatedClassName:
+        type: string
+        label: 'Start event'
+      useClassNames:
+        type: string
+        label: 'Start event'
+      disableMutationObserver:
+        type: string
+        label: 'Start event'
+      debounceDelay:
+        type: string
+        label: 'Start event'
+      throttleDelay:
+        type: string
+        label: 'Start event'

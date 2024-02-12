@@ -1,0 +1,23 @@
+{
+    "name": "drupal/newsletter_signup_block",
+    "type": "drupal-module",
+    "description": "This module provides a quick and easy newsletter signup block.",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "George Anderson (geoanders)",
+            "homepage": "https://www.drupal.org/u/geoanders",
+            "role": "Maintainer"
+        }
+    ],
+    "homepage": "https://drupal.org/project/newsletter_signup_block",
+    "support": {
+        "issues": "https://drupal.org/project/issues/newsletter_signup_block",
+        "source": "https://git.drupalcode.org/project/newsletter_signup_block"
+    },
+    "require": {
+        "drupal/core": "^8.8 || ^9 || ^10",
+        "drupal/webform": "^6.0",
+        "drupal/token": "^1.9"
+    }
+}

@@ -1,0 +1,13 @@
+name: 'AOS JS UI'
+type: module
+description: 'AOS.js library configuration UI.'
+core_version_requirement: ^8 || ^9 || ^10
+package: User interface
+configure: aosjs.admin
+dependencies:
+  - aosjs:aosjs
+
+# Information added by Drupal.org packaging script on 2023-11-09
+version: '1.0.0'
+project: 'aosjs'
+datestamp: 1699541627

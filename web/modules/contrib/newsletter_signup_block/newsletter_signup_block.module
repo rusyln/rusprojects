@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * Contains newsletter_signup_block.module.
+ */
+
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function newsletter_signup_block_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the newsletter_signup_block module.
+    case 'help.page.newsletter_signup_block':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module simply creates a newsletter signup block which drives
+      users to a signup page or the full signup process can be completed on the short form.
+      Works best in conjunction with Webform module.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function newsletter_signup_block_theme($existing, $type, $theme, $path) {
+  return [
+    'newsletter_signup_form' => [
+      'render element' => 'form',
+    ],
+    'newsletter_signup_form_wrapper' => [
+      'variables' => [
+        'signup_form' => NULL,
+        'signup_background' => NULL,
+      ],
+    ],
+    'newsletter_signup_webform_wrapper' => [
+      'variables' => [
+        'signup_title' => NULL,
+        'signup_body' => NULL,
+        'signup_form' => NULL,
+        'signup_background' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function newsletter_signup_block_token_info() {
+  $info = [];
+  $info['types']['newsletter_signup_block'] = [
+    'name' => t('Newsletter Signup Block'),
+    'description' => t('Newsletter signup block tokens.'),
+  ];
+  $info['tokens']['newsletter_signup_block']['submitted_email'] = [
+    'name' => t('Submitted Email'),
+    'description' => t('A custom token to grab submitted email and pre-fill webform data field of choice.'),
+  ];
+  $info['tokens']['newsletter_signup_block']['submitted_first_name'] = [
+    'name' => t('Submitted First Name'),
+    'description' => t('A custom token to grab submitted first name and pre-fill webform data field of choice.'),
+  ];
+  $info['tokens']['newsletter_signup_block']['submitted_last_name'] = [
+    'name' => t('Submitted Last Name'),
+    'description' => t('A custom token to grab submitted last name and pre-fill webform data field of choice.'),
+  ];
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function newsletter_signup_block_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+  if ($type == 'newsletter_signup_block') {
+    /** @var \Drupal\Core\Http\RequestStack $requestStack */
+    $requestStack = \Drupal::service('request_stack');
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'submitted_email':
+          $replacements[$original] = '';
+          if (!empty($requestStack->getCurrentRequest()->request->get('email'))) {
+            $replacements[$original] = $requestStack->getCurrentRequest()->request->get('email');
+          }
+          break;
+
+        case 'submitted_first_name':
+          $replacements[$original] = '';
+          if (!empty($requestStack->getCurrentRequest()->request->get('first_name'))) {
+            $replacements[$original] = $requestStack->getCurrentRequest()->request->get('first_name');
+          }
+          break;
+
+        case 'submitted_last_name':
+          $replacements[$original] = '';
+          if ($requestStack->getCurrentRequest()->request->get('last_name')) {
+            $replacements[$original] = $requestStack->getCurrentRequest()->request->get('last_name');
+          }
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function newsletter_signup_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['#entity_type']) && $form['#entity_type'] === "webform_submission") {
+    foreach ($form['elements'] as $element) {
+      if (isset($element['#attributes']) && isset($element['#attributes']['class']) && in_array('js-dynamic-email', $element['#attributes']['class'])) {
+        $form['#attached']['library'][] = 'newsletter_signup_block/newsletter_signup_webform';
+        break;
+      }
+    }
+  }
+  return $form;
+}

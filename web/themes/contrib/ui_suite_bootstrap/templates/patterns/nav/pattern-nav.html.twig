@@ -1,0 +1,10 @@
+{% if variant and variant|lower != 'default' %}
+  {% set variants = variant|split('__')|map(v => v|lower|replace({(v): 'nav-' ~ v})|replace({'_': '-'})) %}
+  {% set attributes = attributes.addClass(variants) %}
+{% endif %}
+
+{% set nav_type = nav_type|default('ul') %}
+
+<{{ nav_type }}{{ attributes.addClass('nav') }}>
+  {{ items }}
+</{{ nav_type }}>

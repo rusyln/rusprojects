@@ -1,0 +1,7 @@
+/* Paragraphs already provides a class when unpublished. */
+.paragraph--unpublished,
+.is-unpublished {
+  --bs-bg-opacity: 0.1;
+
+  background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
+}

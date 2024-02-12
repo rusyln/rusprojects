@@ -1,0 +1,1 @@
+"use strict";Drupal.theme.checkbox=function(){return'<input type="checkbox" class="form-checkbox form-check-input"/>'};

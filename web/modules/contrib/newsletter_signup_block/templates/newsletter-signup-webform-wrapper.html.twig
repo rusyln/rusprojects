@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Newsletter signup webform wrapper
+ *
+ * Variables:
+ * - signup_title: Title
+ * - signup_body: Body
+ * - signup_form: Form object
+ * - signup_background: Background image
+ */
+#}
+{% if signup_form %}
+  <div class="newsletter-signup">
+    {% if signup_background %}
+      <div class="newsletter-signup__bg"
+           {% if signup_background.src and not signup_background.responsive_image %}style="background-image: url({{ signup_background.src }});"{% endif %}>
+        {% if signup_background.responsive_image %}
+          {{ signup_background.responsive_image }}
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="newsletter-signup__form">
+      {% if signup_title or signup_body %}
+        <div class="newsletter-signup__intro">
+          <h4>{{ signup_title|t }}</h4>
+          {{ signup_body|raw }}
+        </div>
+      {% endif %}
+      {{ signup_form }}
+    </div>
+  </div>
+{% endif %}

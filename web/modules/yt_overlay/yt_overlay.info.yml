@@ -1,0 +1,5 @@
+name: 'YT Overlay'
+type: module
+description: 'This will display youtube overlay'
+package: Youtube
+core_version_requirement: ^10
