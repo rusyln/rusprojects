@@ -1,0 +1,39 @@
+{#
+  /**
+   * @file
+   * Theme override to display a view of unformatted rows.
+   *
+   * Available variables:
+   * - title: The title of this group of rows. May be empty.
+   * - rows: A list of the view's row items.
+   *   - attributes: The row's HTML attributes.
+   *   - content: The row's content.
+   * - view: The view object.
+   * - default_row_class: A flag indicating whether default classes should be
+   *   used on rows.
+   *
+   * @see template_preprocess_views_view_unformatted()
+   */
+  #}
+  {% if title %}
+  <h3 class="text-center">{{ title }}</h3>
+{% endif %}
+<div class="album py-5">
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'views-row col', 
+          'mb-3'  
+        ]
+      %}
+      <div{{ row.attributes.addClass(row_classes) }}>
+        {{- row.content -}}
+      </div>
+      {% if loop.index % 3 == 0 %}
+        </div><div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> {# Close the current row and start a new one every 3 items #}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
