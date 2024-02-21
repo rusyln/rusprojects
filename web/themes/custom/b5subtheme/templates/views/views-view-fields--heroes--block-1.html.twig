@@ -32,7 +32,8 @@
   {% set descriptions = row._entity.get('field_description').getValue() %}
   {% set titles = row._entity.get('title').getValue() %}
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="{{fields.field_image_head.content }}" alt="Rus Project - Drupal Projects and Web Development" width="130" height="130">
+    {{fields.field_image_head.content }}
+   
     {% for title in titles %}
     <h1 class="display-5 fw-bold">{{ title ['value'] }}</h1>
        
