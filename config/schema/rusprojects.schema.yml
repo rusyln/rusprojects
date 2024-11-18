@@ -1,0 +1,5 @@
+# Schema for the configuration files of the rusprojects theme.
+
+rusprojects.settings:
+  type: theme_settings
+  label: 'rusprojects settings'

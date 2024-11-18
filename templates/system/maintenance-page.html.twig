@@ -1,0 +1,108 @@
+{# Maintenance Page Template in Twig using Bootstrap 5 #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title ? title : 'Site Under Maintenance' }}</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+    header, footer {
+      text-align: center;
+      margin: 20px 0;
+    }
+    header img {
+      width: 80px;
+      height: auto;
+    }
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    h1.display-4 {
+      color: #ff4b5c;
+      font-weight: 700;
+    }
+    h1.display-6 {
+      color: #ffffff; /* White text for site name */
+    }
+    .alert-info {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid #ff4b5c;
+    }
+    .loading-bar {
+      width: 50%;
+      height: 4px;
+      background: #ff4b5c;
+      animation: loading 2s infinite;
+    }
+    @keyframes loading {
+      0% { width: 0; }
+      50% { width: 50%; }
+      100% { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header role="banner">
+  {% if logo %}
+    <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
+      <img src="{{ logo }}" alt="{{ 'Home'|t }}">
+    </a>
+  {% endif %}
+  {% if site_name %}
+    <h1 class="display-6">{{ site_name }}</h1>
+  {% endif %}
+  {% if site_slogan %}
+    <p class="lead">{{ site_slogan }}</p>
+  {% endif %}
+</header>
+
+<main role="main" class="container my-5">
+  <h1 class="display-4">{{ title ? title : 'Site Under Maintenance' }}</h1>
+     <div class="alert alert-info mt-4">
+  <p class="lead">We are currently performing scheduled maintenance. We should be back shortly. Thank you for your patience.</p>
+   </div>
+  <div class="loading-bar my-4"></div>
+
+  {% if page.highlighted %}
+  
+      <p class="lead">{{ page.highlighted }}</p>
+   
+  {% endif %}
+</main>
+
+{% if page.sidebar_first %}
+  <aside role="complementary" class="text-center my-4">
+    {{ page.sidebar_first }}
+  </aside>
+{% endif %}
+
+{% if page.sidebar_second %}
+  <aside role="complementary" class="text-center my-4">
+    {{ page.sidebar_second }}
+  </aside>
+{% endif %}
+
+{% if page.footer %}
+  <footer role="contentinfo" class="container my-4">
+    {{ page.footer }}
+  </footer>
+{% endif %}
+
+</body>
+</html>

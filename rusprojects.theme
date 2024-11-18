@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Theme functions.
+ */
+
+// Include all files from the includes directory.
+$includes_path = dirname(__FILE__) . '/includes/*.theme';
+foreach (glob($includes_path) as $file) {
+  require_once dirname(__FILE__) . '/includes/' . basename($file);
+}
+
+
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function rusprojects_preprocess_field(array &$variables) {
+  // Check if this is the `field_project_tag` field.
+  if ($variables['element']['#field_name'] === 'field_project_tag') {
+    // Loop through each field item to modify the link.
+    foreach ($variables['items'] as &$item) {
+      if (isset($item['content']['#options']['attributes']['class'])) {
+        // Append a custom class to existing classes on the <a> tag.
+        $item['content']['#options']['attributes']['class'][] = 'badge bg-primary text-decoration-none link-light';
+      } else {
+        // Add a new class if no classes exist.
+        $item['content']['#options']['attributes']['class'] = ['badge bg-primary text-decoration-none link-light'];
+      }
+    }
+  }
+}
