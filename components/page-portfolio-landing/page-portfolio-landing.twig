@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ */
+#}
+{% set page_attributes = attributes ?: create_attribute() %}
+{% set 
+  page_classes = [
+    'page',
+  ]|merge(page_utility_classes ?: []) 
+%}
+
+<div {{ page_attributes.addClass(page_classes) }}>
+	{% block page_navigation %}
+		{% include 'rusprojects:page-navigation' %}
+	{% endblock %}
+
+  {% block page_content %}
+    {% include 'rusprojects:page-portfolio-landing-content' with {
+      page_main_utility_classes: ['flex-shrink-0'],
+      page_header_container_utility_classes: ['px-5'],
+    }%}
+  {% endblock %}
+
+	{% block page_footer %}
+		{% include 'radix:page-footer' %}
+	{% endblock %}
+</div>
