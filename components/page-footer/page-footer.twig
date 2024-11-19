@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Template for a Page Footer component.
+ *
+#}
+{% apply spaceless %}
+
+{% set footer_attributes = footer_attributes ?: create_attribute() %}
+{%
+  set footer_classes = [
+    'page__footer',
+    'bg-dark',  
+    'text-white',  
+    'py-4', 
+  ]|merge(footer_utility_classes ?: [])
+%}
+
+
+
+
+  {% if page.footer %}
+    <footer {{ footer_attributes.addClass(footer_classes) }}>
+      <div class="container">
+        <div class="row">
+          <!-- Footer content on the left -->
+          <div class="col-md-6 mb-3 mb-md-0">
+            <div class="d-flex flex-column">
+              {% block page_inner_footer_left %}
+                <p>&copy; {{ "now"|date("Y") }} Rus Projects. All rights reserved.</p>
+              {% endblock %}
+            </div>
+          </div>
+
+          <!-- Footer content on the right (e.g., social media links or extra content) -->
+          <div class="col-md-6 text-md-end">
+            {% block page_inner_footer_right %}
+             
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </footer>
+  {% endif %}
+
+
+{% endapply %}
